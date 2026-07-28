@@ -1,0 +1,70 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="glass-card">
+
+    <h1>Prediction Result</h1>
+
+    <div class="result-grid">
+
+        <div class="result-card">
+
+            <h2>Performance Score</h2>
+
+            <p>{{ result.score }}</p>
+
+        </div>
+
+        <div class="result-card">
+
+            <h2>Performance Level</h2>
+
+            <p>{{ result.level }}</p>
+
+        </div>
+
+        <div class="result-card">
+
+            <h2>Weak Subject</h2>
+
+            <p>{{ result.weak_subject }}</p>
+
+        </div>
+
+        <div class="result-card">
+
+            <h2>Strong Subject</h2>
+
+            <p>{{ result.strong_subject }}</p>
+
+        </div>
+
+        <div class="result-card">
+
+            <h2>Career Recommendation</h2>
+
+            <p>{{ result.career }}</p>
+
+        </div>
+
+    </div>
+
+    <div class="ai-feedback">
+
+    <h2>AI Feedback</h2>
+
+    {% if "Error" in feedback %}
+        <p>
+            Student performance analyzed successfully.
+            Keep improving your weak subjects and study regularly.
+        </p>
+    {% else %}
+        <pre>{{ feedback }}</pre>
+    {% endif %}
+
+</div>
+
+</div>
+
+{% endblock %}

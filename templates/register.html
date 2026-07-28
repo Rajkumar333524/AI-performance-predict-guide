@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Register | AI Student Predictor</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="auth-container">
+
+    <div class="auth-card">
+
+        <h1>Create Account</h1>
+
+        <p class="auth-subtitle">
+            Register to access AI Student Predictor
+        </p>
+
+        <form method="POST">
+
+            <input
+                type="text"
+                name="username"
+                placeholder="Enter Username"
+                required
+            >
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter Email"
+                required
+            >
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter Password"
+                required
+            >
+
+            <button type="submit">
+                Register
+            </button>
+
+        </form>
+
+        <div class="auth-footer">
+
+            Already have an account?
+
+            <a href="/login">
+                Login Here
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

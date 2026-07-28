@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="glass-card">
+
+    <h1>AI Student Prediction</h1>
+
+    <form method="POST">
+
+        <input
+            type="number"
+            name="study_hours"
+            placeholder="Study Hours"
+            required
+        >
+
+        <input
+            type="number"
+            name="attendance"
+            placeholder="Attendance %"
+            required
+        >
+
+        <input
+            type="number"
+            name="math_marks"
+            placeholder="Math Marks"
+            required
+        >
+
+        <input
+            type="number"
+            name="science_marks"
+            placeholder="Science Marks"
+            required
+        >
+
+        <input
+            type="number"
+            name="english_marks"
+            placeholder="English Marks"
+            required
+        >
+
+        <input
+            type="number"
+            name="computer_marks"
+            placeholder="Computer Marks"
+            required
+        >
+
+        <button type="submit">
+            Predict Performance
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

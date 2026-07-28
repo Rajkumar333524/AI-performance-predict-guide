@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h1>Prediction History</h1>
+
+<div class="glass-card">
+
+<table>
+
+<tr>
+
+<th>Score</th>
+
+<th>Performance</th>
+
+<th>Career</th>
+<th>PDF</th>
+
+</tr>
+
+{% for p in predictions %}
+
+<tr>
+
+<td>{{ p.performance_score }}</td>
+
+<td>{{ p.performance_level }}</td>
+
+<td>{{ p.career }}</td>
+<td>
+    <a href="{{ url_for('download_report', id=p.id) }}">
+        Download PDF
+    </a>
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,150 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="dashboard-container">
+
+    <h1 class="dashboard-title">
+        Welcome, {{ current_user.username }}
+    </h1>
+
+    <div class="card-grid">
+
+        <div class="card stat-card">
+            <h3>Total Predictions</h3>
+            <h2>{{ total_predictions }}</h2>
+        </div>
+
+        <div class="card stat-card">
+            <h3>Average Score</h3>
+            <h2>{{ avg_score|round(2) }}</h2>
+        </div>
+
+        <div class="card stat-card">
+            <h3>XP Points</h3>
+            <h2>{{ current_user.xp }}</h2>
+        </div>
+
+        <div class="card stat-card">
+            <h3>Study Streak</h3>
+            <h2>{{ current_user.streak }}</h2>
+        </div>
+
+    </div>
+
+    {% if latest %}
+
+    <div class="glass-card latest-card">
+
+        <h2>Latest Prediction</h2>
+
+        <div class="latest-grid">
+
+            <div>
+                <strong>Performance Score</strong>
+                <p>{{ latest.performance_score }}</p>
+            </div>
+
+            <div>
+                <strong>Performance Level</strong>
+                <p>{{ latest.performance_level }}</p>
+            </div>
+
+            <div>
+                <strong>Career</strong>
+                <p>{{ latest.career }}</p>
+            </div>
+
+            <div>
+                <strong>Strong Subject</strong>
+                <p>{{ latest.strong_subject }}</p>
+            </div>
+
+            <div>
+                <strong>Weak Subject</strong>
+                <p>{{ latest.weak_subject }}</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+    <div class="glass-card chart-card">
+
+        <h2>Performance Analytics</h2>
+
+        <div class="chart-wrapper">
+            <canvas id="performanceChart"></canvas>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const canvas = document.getElementById("performanceChart");
+
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+
+    
+
+    const labels = [
+    "{% for p in predictions %}",
+     "Prediction {{ loop.index }}",
+    "{% endfor %}"
+     ];
+
+    const scores = [
+    "{% for p in predictions %}",
+    "{{ p.performance_score or 0 }}",
+    "{% endfor %}"
+    ];
+
+    new Chart(ctx, {
+        type: "line",
+
+        data: {
+            labels: labels,
+
+            datasets: [{
+                label: "Performance Score",
+                data: scores,
+                borderColor: "#38bdf8",
+                backgroundColor: "rgba(56,189,248,0.2)",
+                borderWidth: 3,
+                tension: 0.4,
+                fill: true
+            }]
+        },
+
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+
+            plugins: {
+                legend: {
+                    display: true
+                }
+            },
+
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100
+                }
+            }
+        }
+    });
+
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<h1>Admin Dashboard</h1>
+
+<div class="glass-card">
+    <h2>All Students</h2>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>XP</th>
+            <th>Streak</th>
+        </tr>
+
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.xp }}</td>
+            <td>{{ user.streak }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+<div class="glass-card">
+    <h2>Prediction Analytics</h2>
+    <canvas id="adminChart"></canvas>
+</div>
+
+
+<script>
+const ctx = document.getElementById("adminChart");
+
+new Chart(ctx, {
+    type: "bar",
+
+    data: {
+        labels: [
+           " {% for p in predictions : %}",
+                "{{ loop.index }}",
+                "{% if not loop.last %}",
+                "{% endif %}",
+            "{% endfor %}"
+        ],
+
+        datasets: [{
+            label: "Student Scores",
+            data: [
+                "{% for p in predictions :%} ", 
+                "{{ p.performance_score }}",
+                "{% if not loop.last %}", 
+                "{% endif %}{% endfor %}"
+            ],
+            borderWidth: 1
+        }]
+    },
+
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+
+{% endblock %}

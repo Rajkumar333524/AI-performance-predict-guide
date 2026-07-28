@@ -1,0 +1,179 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: black;
+    color: rgb(9, 38, 202);
+}
+
+
+/* HERO */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+
+    padding: 70px 8%;
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+
+/* BADGE */
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 7px 14px;
+    margin-bottom: 25px;
+
+    background: #eff6ff;
+    color: #2563eb;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* HEADING */
+
+.hero h1 {
+    font-size: 64px;
+    line-height: 1.1;
+
+    color: #172033;
+
+    font-weight: 700;
+    letter-spacing: -2px;
+}
+
+.hero h1 span {
+    display: block;
+    color: #2563eb;
+}
+
+
+/* DESCRIPTION */
+
+.description {
+    max-width: 800px;
+
+    margin-top: 30px;
+
+    color: #64748b;
+
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+
+/* BUTTONS */
+
+.buttons {
+    display: flex;
+    gap: 14px;
+
+    margin-top: 32px;
+}
+
+.buttons a {
+    min-height: 52px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 0 25px;
+
+    border-radius: 7px;
+
+    text-decoration: none;
+
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.get-started {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.get-started:hover {
+    background: #1d4ed8;
+}
+
+.login-btn {
+    background: #ffffff;
+    color: #172033;
+
+    border: 1px solid #cbd5e1;
+}
+
+.login-btn:hover {
+    background: #f8fafc;
+}
+
+
+/* BOTTOM POINTS */
+
+.points {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+
+    margin-top: 30px;
+}
+
+.points span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    color: #64748b;
+
+    font-size: 12px;
+}
+
+.points i {
+    color: #16a34a;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .hero {
+        padding: 50px 25px;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+    }
+
+    .description {
+        font-size: 16px;
+    }
+
+    .buttons {
+        flex-wrap: wrap;
+    }
+
+    .points {
+        gap: 12px;
+    }
+}

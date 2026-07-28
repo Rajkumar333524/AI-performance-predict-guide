@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+ <!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>AI Student Predictor</title>
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+>
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+>
+
+
+<link rel="stylesheet"
+href="{{url_for('static',filename='css/chatbot.css')}}">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+```
+
+</head>
+
+<body>
+
+```
+<div class="sidebar">
+
+    <div class="logo">
+
+        <h2>
+            <i class="fa-solid fa-brain"></i>
+            AI EDU
+        </h2>
+
+    </div>
+
+    <div class="menu">
+
+        <a href="/dashboard">
+            <i class="fa-solid fa-chart-line"></i>
+            Dashboard
+        </a>
+
+        <a href="/predict">
+            <i class="fa-solid fa-graduation-cap"></i>
+            Predictor
+        </a>
+
+        <a href="/history">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            History
+        </a>
+
+        <a href="/chatbot">
+            <i class="fa-solid fa-robot"></i>
+            AI Chatbot
+        </a>
+
+        <a href="/admin">
+            <i class="fa-solid fa-user-shield"></i>
+            Admin
+        </a>
+
+        <a href="/logout">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </a>
+
+    </div>
+
+</div>
+
+<div class="main-content">
+
+    <div class="topbar">
+
+        <h2>
+            AI Student Performance Predictor
+        </h2>
+
+        {% if current_user.is_authenticated %}
+
+        <div class="user-box">
+
+            <i class="fa-solid fa-user"></i>
+
+            {{ current_user.username }}
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+</div>
+```
+
+</body>
+
+</html>
