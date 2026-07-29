@@ -3,52 +3,41 @@
 
 <head>
 
- <!DOCTYPE html>
+    <meta charset="UTF-8">
 
-<html lang="en">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-<head>
+    <title>AI Student Predictor</title>
 
-```
-<meta charset="UTF-8">
+    <!-- Main CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-<title>AI Student Predictor</title>
+    <!-- Chatbot CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/chatbot.css') }}">
 
-<link
-    rel="stylesheet"
-    href="{{ url_for('static', filename='css/style.css') }}"
->
-
-<link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
->
-
-
-<link rel="stylesheet"
-href="{{url_for('static',filename='css/chatbot.css')}}">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-```
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
 <body>
 
-```
+<!-- ================= SIDEBAR ================= -->
+
 <div class="sidebar">
 
     <div class="logo">
-
         <h2>
             <i class="fa-solid fa-brain"></i>
             AI EDU
         </h2>
-
     </div>
 
     <div class="menu">
@@ -87,6 +76,9 @@ href="{{url_for('static',filename='css/chatbot.css')}}">
 
 </div>
 
+
+<!-- ================= MAIN CONTENT ================= -->
+
 <div class="main-content">
 
     <div class="topbar">
@@ -109,11 +101,244 @@ href="{{url_for('static',filename='css/chatbot.css')}}">
 
     </div>
 
-    {% block content %}
-    {% endblock %}
+
+    <!-- PAGE CONTENT -->
+
+    <div class="page-content">
+
+        {% block content %}
+        {% endblock %}
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="main-footer">
+
+        <div class="footer-saffron"></div>
+
+        <div class="footer-content">
+
+            <div class="footer-brand">
+
+                <i class="fa-solid fa-brain"></i>
+
+                <span>
+                    AI Student Performance Predictor
+                </span>
+
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <p>
+                Design &amp; Developed by
+                <strong>Raj Kumar Pal</strong>
+            </p>
+
+            <p class="college-name">
+                Sam Higginbottom University of Agriculture,
+                Technology and Sciences (SHUATS)
+            </p>
+
+            <p class="footer-location">
+                <i class="fa-solid fa-location-dot"></i>
+                Naini, Prayagraj
+            </p>
+
+            <p class="copyright">
+                &copy; 2026 AI EDU. All Rights Reserved.
+            </p>
+
+        </div>
+
+        <div class="footer-green"></div>
+
+    </footer>
 
 </div>
-```
+
+
+<!-- ================= FOOTER CSS ================= -->
+
+<style>
+
+    /* Main content ko column layout deta hai */
+    .main-content {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Page content available space lega */
+    .page-content {
+        flex: 1;
+    }
+
+
+    /* ================= FOOTER ================= */
+
+    .main-footer {
+        width: 100%;
+        margin-top: 45px;
+
+        background: rgba(255, 255, 255, 0.06);
+
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+
+        text-align: center;
+
+        box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.20);
+
+        overflow: hidden;
+    }
+
+
+    /* Indian Flag Saffron */
+
+    .footer-saffron {
+        height: 5px;
+
+        background: linear-gradient(
+            90deg,
+            #ff9933,
+            #ff7a00,
+            #ff9933
+        );
+
+        box-shadow: 0 0 12px rgba(255, 153, 51, 0.65);
+    }
+
+
+    /* Footer content */
+
+    .footer-content {
+        padding: 24px 20px 20px;
+    }
+
+
+    /* AI EDU Brand */
+
+    .footer-brand {
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        gap: 10px;
+
+        margin-bottom: 14px;
+
+        font-size: 18px;
+
+        font-weight: 700;
+    }
+
+
+    .footer-brand i {
+        color: #ff9933;
+
+        font-size: 22px;
+    }
+
+
+    /* Divider */
+
+    .footer-divider {
+        width: 75px;
+
+        height: 2px;
+
+        margin: 0 auto 15px;
+
+        background: linear-gradient(
+            90deg,
+            #ff9933,
+            #ffffff,
+            #138808
+        );
+
+        border-radius: 20px;
+    }
+
+
+    .footer-content p {
+        margin: 7px 0;
+
+        font-size: 14px;
+
+        line-height: 1.6;
+    }
+
+
+    .footer-content strong {
+        color: #ff9933;
+
+        font-weight: 700;
+    }
+
+
+    .college-name {
+        font-weight: 500;
+    }
+
+
+    .footer-location i {
+        color: #138808;
+
+        margin-right: 5px;
+    }
+
+
+    .copyright {
+        opacity: 0.7;
+
+        font-size: 12px !important;
+
+        margin-top: 12px !important;
+    }
+
+
+    /* Indian Flag Green */
+
+    .footer-green {
+        height: 5px;
+
+        background: linear-gradient(
+            90deg,
+            #138808,
+            #0fa84f,
+            #138808
+        );
+
+        box-shadow: 0 0 12px rgba(19, 136, 8, 0.6);
+    }
+
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 768px) {
+
+        .footer-content {
+            padding: 20px 12px 16px;
+        }
+
+        .footer-brand {
+            font-size: 15px;
+        }
+
+        .footer-content p {
+            font-size: 12px;
+        }
+
+    }
+
+</style>
 
 </body>
 
