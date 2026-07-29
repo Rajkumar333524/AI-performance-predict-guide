@@ -1,76 +1,200 @@
-{% extends 'layout.html' %}
+<!DOCTYPE html>
 
-{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<h1>Admin Dashboard</h1>
+```
+<title>AI Student Predictor</title>
 
-<div class="glass-card">
-    <h2>All Students</h2>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>XP</th>
-            <th>Streak</th>
-        </tr>
+    html, body {
+        min-height: 100%;
+    }
 
-        {% for user in users %}
-        <tr>
-            <td>{{ user.id }}</td>
-            <td>{{ user.username }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.xp }}</td>
-            <td>{{ user.streak }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-</div>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f7fb;
+        color: #1f2937;
+
+        /* Footer ko bottom par rakhne ke liye */
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* ==============================
+       MAIN CONTENT
+       ============================== */
+
+    main {
+        flex: 1;
+        width: 100%;
+    }
+
+    .page-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
+
+    /* Apna existing page content
+       .page-content ke andar rakhna */
 
 
-<div class="glass-card">
-    <h2>Prediction Analytics</h2>
-    <canvas id="adminChart"></canvas>
-</div>
+    /* ==============================
+       INDIAN TRICOLOR FOOTER
+       ============================== */
 
+    .india-footer {
+        width: 100%;
+        margin-top: auto;
+        background: #ffffff;
+        text-align: center;
+        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.10);
+        overflow: hidden;
+    }
 
-<script>
-const ctx = document.getElementById("adminChart");
+    /* Saffron */
+    .footer-saffron {
+        width: 100%;
+        height: 8px;
+        background: #FF9933;
+    }
 
-new Chart(ctx, {
-    type: "bar",
+    .footer-content {
+        padding: 18px 15px;
+        background: #ffffff;
+    }
 
-    data: {
-        labels: [
-           " {% for p in predictions : %}",
-                "{{ loop.index }}",
-                "{% if not loop.last %}",
-                "{% endif %}",
-            "{% endfor %}"
-        ],
+    .developer {
+        margin: 0 0 7px;
+        font-size: 16px;
+        font-weight: 500;
+        color: #222222;
+    }
 
-        datasets: [{
-            label: "Student Scores",
-            data: [
-                "{% for p in predictions :%} ", 
-                "{{ p.performance_score }}",
-                "{% if not loop.last %}", 
-                "{% endif %}{% endfor %}"
-            ],
-            borderWidth: 1
-        }]
-    },
+    .developer strong {
+        color: #000080;
+        font-size: 18px;
+        font-weight: 700;
+    }
 
-    options: {
-        responsive: true,
-        scales: {
-            y: {
-                beginAtZero: true
-            }
+    .college-name {
+        margin: 5px 0;
+        font-size: 14px;
+        font-weight: 600;
+        color: #333333;
+    }
+
+    .footer-location {
+        margin: 5px 0 0;
+        font-size: 13px;
+        color: #666666;
+    }
+
+    /* Green */
+    .footer-green {
+        width: 100%;
+        height: 8px;
+        background: #138808;
+    }
+
+    /* ==============================
+       RESPONSIVE FOOTER
+       ============================== */
+
+    @media (max-width: 600px) {
+
+        .footer-content {
+            padding: 15px 12px;
+        }
+
+        .developer {
+            font-size: 14px;
+        }
+
+        .developer strong {
+            font-size: 16px;
+        }
+
+        .college-name {
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .footer-location {
+            font-size: 12px;
+        }
+
+        .footer-saffron,
+        .footer-green {
+            height: 6px;
         }
     }
-});
-</script>
+</style>
+```
 
-{% endblock %}
+</head>
+
+<body>
+
+```
+<!-- ==================================
+     TUMHARA EXISTING PAGE CONTENT
+     ================================== -->
+
+<main>
+    <div class="page-content">
+
+        <!--
+            Yahan apna existing AI Student Predictor
+            ka HTML content paste karna hai.
+        -->
+
+    </div>
+</main>
+
+
+<!-- ==================================
+     INDIAN TRICOLOR FOOTER
+     ================================== -->
+
+<footer class="india-footer">
+
+    <!-- Indian Flag Saffron -->
+    <div class="footer-saffron"></div>
+
+    <!-- White Section -->
+    <div class="footer-content">
+
+        <p class="developer">
+            Design &amp; Developed by <strong>Raj</strong>
+        </p>
+
+        <p class="college-name">
+            Sam Higginbottom University of Agriculture,
+            Technology and Sciences (SHUATS)
+        </p>
+
+        <p class="footer-location">
+            Naini, Prayagraj, Uttar Pradesh
+        </p>
+
+    </div>
+
+    <!-- Indian Flag Green -->
+    <div class="footer-green"></div>
+
+</footer>
+```
+
+</body>
+</html>
