@@ -9,62 +9,235 @@
     <div class="result-grid">
 
         <div class="result-card">
-
             <h2>Performance Score</h2>
-
             <p>{{ result.score }}</p>
-
         </div>
 
         <div class="result-card">
-
             <h2>Performance Level</h2>
-
             <p>{{ result.level }}</p>
-
         </div>
 
         <div class="result-card">
-
             <h2>Weak Subject</h2>
-
             <p>{{ result.weak_subject }}</p>
-
         </div>
 
         <div class="result-card">
-
             <h2>Strong Subject</h2>
-
             <p>{{ result.strong_subject }}</p>
-
         </div>
 
         <div class="result-card">
-
             <h2>Career Recommendation</h2>
-
             <p>{{ result.career }}</p>
-
         </div>
 
     </div>
 
+
+    <!-- AI FEEDBACK -->
+
     <div class="ai-feedback">
 
-    <h2>AI Feedback</h2>
+        <h2>AI Feedback</h2>
 
-    {% if "Error" in feedback %}
-        <p>
-            Student performance analyzed successfully.
-            Keep improving your weak subjects and study regularly.
+        {% if "Error" in feedback %}
+
+            <p>
+                Student performance analyzed successfully.
+                Keep improving your weak subjects and study regularly.
+            </p>
+
+        {% else %}
+
+            <pre>{{ feedback }}</pre>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+        PREMIUM FOOTER
+========================= -->
+
+<footer class="premium-footer">
+
+    <div class="footer-line"></div>
+
+    <div class="footer-content">
+
+        <p class="saffron">
+            Designed and Developed by Raj
         </p>
-    {% else %}
-        <pre>{{ feedback }}</pre>
-    {% endif %}
 
-</div>
+        <p class="white">
+            Sam Higginbottom University of Agriculture,
+            Technology and Sciences
+        </p>
 
-</div>
+        <p class="green">
+            Naini, Prayagraj
+        </p>
+
+    </div>
+
+</footer>
+
+
+<style>
+
+/* =========================
+   PREMIUM FOOTER
+========================= */
+
+.premium-footer {
+    width: 100%;
+    margin-top: 50px;
+
+    background: rgba(8, 15, 30, 0.95);
+
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    text-align: center;
+
+    padding-bottom: 25px;
+
+    box-shadow:
+        0 -5px 30px rgba(0, 0, 0, 0.3);
+}
+
+
+/* TRICOLOR TOP LINE */
+
+.footer-line {
+    width: 100%;
+    height: 5px;
+
+    background: linear-gradient(
+        90deg,
+        #FF9933 0%,
+        #FF9933 33.33%,
+        #FFFFFF 33.33%,
+        #FFFFFF 66.66%,
+        #138808 66.66%,
+        #138808 100%
+    );
+
+    box-shadow:
+        0 0 12px rgba(255, 153, 51, 0.5);
+}
+
+
+/* FOOTER CONTENT */
+
+.footer-content {
+    padding: 20px 15px 5px;
+}
+
+
+.footer-content p {
+    margin: 7px 0;
+
+    font-family: Arial, sans-serif;
+
+    font-weight: 600;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* SAFFRON TEXT */
+
+.saffron {
+    color: #FF9933;
+    font-size: 21px;
+}
+
+
+/* WHITE TEXT */
+
+.white {
+    color: #FFFFFF;
+    font-size: 18px;
+}
+
+
+/* GREEN TEXT */
+
+.green {
+    color: #20c75a;
+    font-size: 19px;
+}
+
+
+/* FOOTER HOVER GLOW */
+
+.premium-footer:hover .footer-line {
+
+    box-shadow:
+        0 0 20px rgba(255, 153, 51, 0.7),
+        0 0 30px rgba(19, 136, 8, 0.3);
+}
+
+
+/* =========================
+   AI FEEDBACK
+========================= */
+
+.ai-feedback {
+    margin-top: 30px;
+}
+
+.ai-feedback h2 {
+    margin-bottom: 15px;
+}
+
+.ai-feedback pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+
+    font-family: inherit;
+    line-height: 1.7;
+
+    margin: 0;
+}
+
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+
+    .premium-footer {
+        margin-top: 35px;
+        padding-bottom: 18px;
+    }
+
+    .footer-content {
+        padding: 16px 10px 3px;
+    }
+
+    .saffron {
+        font-size: 17px;
+    }
+
+    .white {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .green {
+        font-size: 16px;
+    }
+
+}
+
+</style>
 
 {% endblock %}
