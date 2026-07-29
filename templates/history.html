@@ -1,45 +1,708 @@
+```html
 {% extends 'layout.html' %}
 
 {% block content %}
 
-<h1>Prediction History</h1>
+<div class="history-page">
 
-<div class="glass-card">
+    <!-- Page Header -->
+    <div class="history-header">
+        <div>
+            <span class="page-label">AI STUDENT PREDICTOR</span>
+            <h1>Prediction History</h1>
+            <p>View your previous performance predictions and download reports.</p>
+        </div>
 
-<table>
+        <div class="history-count">
+            <span>{{ predictions|length }}</span>
+            <small>Predictions</small>
+        </div>
+    </div>
 
-<tr>
 
-<th>Score</th>
+    <!-- History Card -->
+    <div class="history-card">
 
-<th>Performance</th>
+        {% if predictions %}
 
-<th>Career</th>
-<th>PDF</th>
+        <div class="table-responsive">
 
-</tr>
+            <table class="history-table">
 
-{% for p in predictions %}
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Score</th>
+                        <th>Performance</th>
+                        <th>Career Recommendation</th>
+                        <th>Report</th>
+                    </tr>
+                </thead>
 
-<tr>
+                <tbody>
 
-<td>{{ p.performance_score }}</td>
+                    {% for p in predictions %}
 
-<td>{{ p.performance_level }}</td>
+                    <tr>
 
-<td>{{ p.career }}</td>
-<td>
-    <a href="{{ url_for('download_report', id=p.id) }}">
-        Download PDF
-    </a>
-</td>
+                        <!-- Serial Number -->
+                        <td data-label="#">
+                            <span class="serial-number">
+                                {{ loop.index }}
+                            </span>
+                        </td>
 
-</tr>
 
-{% endfor %}
+                        <!-- Score -->
+                        <td data-label="Score">
+                            <div class="score-box">
+                                <span class="score-value">
+                                    {{ p.performance_score }}
+                                </span>
+                            </div>
+                        </td>
 
-</table>
+
+                        <!-- Performance -->
+                        <td data-label="Performance">
+
+                            {% set level = p.performance_level|lower %}
+
+                            <span class="
+                                performance-badge
+                                {% if 'excellent' in level %}
+                                    excellent
+                                {% elif 'good' in level %}
+                                    good
+                                {% elif 'average' in level %}
+                                    average
+                                {% elif 'poor' in level %}
+                                    poor
+                                {% else %}
+                                    default
+                                {% endif %}
+                            ">
+                                {{ p.performance_level }}
+                            </span>
+
+                        </td>
+
+
+                        <!-- Career -->
+                        <td data-label="Career">
+                            <div class="career-box">
+                                <span class="career-icon">🎓</span>
+                                <span>{{ p.career }}</span>
+                            </div>
+                        </td>
+
+
+                        <!-- PDF -->
+                        <td data-label="Report">
+
+                            <a
+                                class="download-btn"
+                                href="{{ url_for('download_report', id=p.id) }}"
+                            >
+                                <span class="pdf-icon">PDF</span>
+                                Download
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        {% else %}
+
+        <!-- Empty History -->
+        <div class="empty-history">
+
+            <div class="empty-icon">📊</div>
+
+            <h2>No Predictions Yet</h2>
+
+            <p>
+                Your prediction history will appear here after
+                you analyze your academic performance.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
 
 </div>
 
+
+<style>
+
+/* ==============================
+   HISTORY PAGE
+================================ */
+
+.history-page {
+    width: min(1180px, 94%);
+    margin: 45px auto 70px;
+}
+
+
+/* ==============================
+   HEADER
+================================ */
+
+.history-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+
+    margin-bottom: 28px;
+}
+
+.page-label {
+    display: inline-block;
+
+    color: #4f46e5;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+
+    margin-bottom: 8px;
+}
+
+.history-header h1 {
+    margin: 0;
+
+    font-size: clamp(30px, 4vw, 43px);
+    font-weight: 800;
+
+    color: #172033;
+}
+
+.history-header p {
+    margin: 9px 0 0;
+
+    color: #64748b;
+    font-size: 15px;
+}
+
+
+/* Prediction Count */
+
+.history-count {
+    min-width: 120px;
+
+    padding: 15px 22px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background: rgba(255, 255, 255, 0.72);
+
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 18px;
+
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.history-count span {
+    font-size: 27px;
+    font-weight: 800;
+    color: #4f46e5;
+}
+
+.history-count small {
+    color: #64748b;
+    font-weight: 600;
+}
+
+
+/* ==============================
+   GLASS CARD
+================================ */
+
+.history-card {
+
+    background: rgba(255, 255, 255, 0.72);
+
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: 24px;
+
+    box-shadow:
+        0 20px 50px rgba(15, 23, 42, 0.10),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    overflow: hidden;
+}
+
+
+/* ==============================
+   TABLE
+================================ */
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.history-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 800px;
+}
+
+
+/* Header */
+
+.history-table thead {
+    background: linear-gradient(
+        135deg,
+        rgba(79, 70, 229, 0.11),
+        rgba(124, 58, 237, 0.08)
+    );
+}
+
+.history-table th {
+    padding: 19px 22px;
+
+    text-align: left;
+
+    color: #475569;
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+
+    border-bottom: 1px solid rgba(148, 163, 184, 0.20);
+}
+
+
+/* Rows */
+
+.history-table td {
+    padding: 18px 22px;
+
+    color: #334155;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+
+    vertical-align: middle;
+}
+
+.history-table tbody tr {
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease;
+}
+
+.history-table tbody tr:hover {
+    background: rgba(79, 70, 229, 0.045);
+}
+
+.history-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* ==============================
+   SERIAL NUMBER
+================================ */
+
+.serial-number {
+
+    width: 34px;
+    height: 34px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #eef2ff;
+
+    color: #4f46e5;
+
+    font-size: 13px;
+    font-weight: 800;
+}
+
+
+/* ==============================
+   SCORE
+================================ */
+
+.score-box {
+    display: flex;
+    align-items: center;
+}
+
+.score-value {
+
+    min-width: 60px;
+
+    padding: 8px 13px;
+
+    text-align: center;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #eef2ff,
+        #f5f3ff
+    );
+
+    color: #4338ca;
+
+    font-size: 15px;
+    font-weight: 800;
+}
+
+
+/* ==============================
+   PERFORMANCE BADGES
+================================ */
+
+.performance-badge {
+
+    display: inline-flex;
+    align-items: center;
+
+    padding: 7px 13px;
+
+    border-radius: 50px;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+
+/* Excellent */
+
+.performance-badge.excellent {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+
+/* Good */
+
+.performance-badge.good {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+
+/* Average */
+
+.performance-badge.average {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+
+/* Poor */
+
+.performance-badge.poor {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+
+/* Default */
+
+.performance-badge.default {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+
+/* ==============================
+   CAREER
+================================ */
+
+.career-box {
+
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    font-weight: 600;
+
+    color: #334155;
+}
+
+.career-icon {
+    font-size: 19px;
+}
+
+
+/* ==============================
+   DOWNLOAD BUTTON
+================================ */
+
+.download-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 9px 15px;
+
+    border-radius: 11px;
+
+    text-decoration: none;
+
+    background: linear-gradient(
+        135deg,
+        #4f46e5,
+        #7c3aed
+    );
+
+    color: white;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    box-shadow: 0 6px 18px rgba(79, 70, 229, 0.22);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.download-btn:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(79, 70, 229, 0.32);
+}
+
+.pdf-icon {
+
+    padding: 3px 5px;
+
+    background: rgba(255,255,255,0.20);
+
+    border-radius: 5px;
+
+    font-size: 9px;
+    font-weight: 900;
+}
+
+
+/* ==============================
+   EMPTY HISTORY
+================================ */
+
+.empty-history {
+
+    padding: 70px 25px;
+
+    text-align: center;
+}
+
+.empty-icon {
+
+    width: 75px;
+    height: 75px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 22px;
+
+    background: #eef2ff;
+
+    font-size: 34px;
+}
+
+.empty-history h2 {
+
+    margin: 0 0 8px;
+
+    color: #1e293b;
+
+    font-size: 22px;
+}
+
+.empty-history p {
+
+    max-width: 430px;
+
+    margin: auto;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* ==============================
+   MOBILE
+================================ */
+
+@media (max-width: 768px) {
+
+    .history-page {
+        width: 92%;
+        margin-top: 30px;
+    }
+
+    .history-header {
+
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .history-count {
+
+        flex-direction: row;
+
+        gap: 8px;
+
+        min-width: auto;
+
+        padding: 10px 16px;
+    }
+
+    .history-count span {
+        font-size: 20px;
+    }
+
+    .history-table {
+        min-width: 700px;
+    }
+
+    .history-table th,
+    .history-table td {
+        padding: 15px 16px;
+    }
+
+}
+
+
+/* ==============================
+   SMALL MOBILE CARD TABLE
+================================ */
+
+@media (max-width: 550px) {
+
+    .history-card {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+        overflow: visible;
+    }
+
+    .table-responsive {
+        overflow: visible;
+    }
+
+    .history-table,
+    .history-table tbody,
+    .history-table tr,
+    .history-table td {
+
+        display: block;
+
+        width: 100%;
+    }
+
+    .history-table {
+        min-width: 0;
+    }
+
+    .history-table thead {
+        display: none;
+    }
+
+    .history-table tr {
+
+        margin-bottom: 18px;
+
+        padding: 13px;
+
+        background: rgba(255,255,255,0.82);
+
+        border: 1px solid rgba(255,255,255,0.9);
+
+        border-radius: 18px;
+
+        box-shadow:
+            0 10px 30px rgba(15,23,42,0.08);
+
+        backdrop-filter: blur(15px);
+    }
+
+    .history-table td {
+
+        display: flex;
+
+        justify-content: space-between;
+        align-items: center;
+
+        gap: 15px;
+
+        padding: 11px 7px;
+
+        border-bottom:
+            1px solid rgba(148,163,184,0.15);
+    }
+
+    .history-table td:last-child {
+        border-bottom: none;
+    }
+
+    .history-table td::before {
+
+        content: attr(data-label);
+
+        color: #64748b;
+
+        font-size: 12px;
+        font-weight: 800;
+
+        text-transform: uppercase;
+    }
+
+}
+
+</style>
+
 {% endblock %}
+```
