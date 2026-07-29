@@ -4,195 +4,258 @@
 
 <div class="glass-card chatbot-container">
 
-<h1>Educational AI Assistant</h1>
+    <h1>Educational AI Assistant</h1>
 
-<div id="chat-box">
+    <div id="chat-box">
+    </div>
 
-</div>
+    <div class="input-box">
 
+        <textarea
+            id="message"
+            placeholder="Ask anything....."
+            rows="2"
+        ></textarea>
 
-<div class="input-box">
+        <button onclick="sendMessage()">
+            Send
+        </button>
 
-<textarea
-
-id="message"
-
-placeholder="Ask anything....."
-
-rows="2"
-
-></textarea>
-
-
-<button onclick="sendMessage()">
-
-Send
-
-</button>
-
+    </div>
 
 </div>
 
 
-</div>
+<!-- =========================
+     TRICOLOR FOOTER
+========================= -->
 
+<footer class="tricolor-footer">
 
+    <div class="footer-saffron"></div>
+
+    <div class="footer-content">
+
+        <p>
+            Design and Developed by
+            <span class="developer-name">Raj</span>
+        </p>
+
+        <span class="footer-divider">|</span>
+
+        <p>
+            Sam Higginbottom University of Agriculture,
+            Technology and Sciences
+        </p>
+
+        <span class="footer-divider">|</span>
+
+        <p>Naini, Prayagraj</p>
+
+    </div>
+
+    <div class="footer-green"></div>
+
+</footer>
 
 
 <style>
 
+/* =========================
+   CHATBOT
+========================= */
+
 .chatbot-container{
-
-max-width:1000px;
-
-margin:auto;
-
+    max-width:1000px;
+    margin:auto;
 }
 
 
 #chat-box{
-
-height:550px;
-
-overflow-y:auto;
-
-padding:20px;
-
-border-radius:20px;
-
-background:#081120;
-
-margin-bottom:20px;
-
+    height:550px;
+    overflow-y:auto;
+    padding:20px;
+    border-radius:20px;
+    background:#081120;
+    margin-bottom:20px;
 }
 
 
 .user-chat{
-
-max-width:75%;
-
-margin-left:auto;
-
-padding:15px;
-
-margin-top:15px;
-
-border-radius:20px;
-
-background:#0ea5e9;
-
-color:white;
-
-line-height:1.8;
-
-word-wrap:break-word;
-
+    max-width:75%;
+    margin-left:auto;
+    padding:15px;
+    margin-top:15px;
+    border-radius:20px;
+    background:#0ea5e9;
+    color:white;
+    line-height:1.8;
+    word-wrap:break-word;
 }
 
 
 .ai-chat{
-
-max-width:80%;
-
-padding:20px;
-
-margin-top:15px;
-
-border-radius:20px;
-
-background:#1e293b;
-
-color:white;
-
-line-height:1.9;
-
-word-wrap:break-word;
-
+    max-width:80%;
+    padding:20px;
+    margin-top:15px;
+    border-radius:20px;
+    background:#1e293b;
+    color:white;
+    line-height:1.9;
+    word-wrap:break-word;
 }
 
 
 .ai-chat h3{
-
-margin-bottom:10px;
-
+    margin-bottom:10px;
 }
 
 
 .input-box{
-
-display:flex;
-
-gap:15px;
-
+    display:flex;
+    gap:15px;
 }
 
 
 textarea{
-
-width:100%;
-
-padding:15px;
-
-border:none;
-
-border-radius:15px;
-
-font-size:17px;
-
-resize:none;
-
-outline:none;
-
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:15px;
+    font-size:17px;
+    resize:none;
+    outline:none;
 }
 
 
 button{
-
-padding:15px 25px;
-
-border:none;
-
-border-radius:15px;
-
-cursor:pointer;
-
-font-size:17px;
-
+    padding:15px 25px;
+    border:none;
+    border-radius:15px;
+    cursor:pointer;
+    font-size:17px;
 }
 
 
 .loading{
-
-font-style:italic;
-
-color:#38bdf8;
-
+    font-style:italic;
+    color:#38bdf8;
 }
 
 
 pre{
-
-background:black;
-
-padding:15px;
-
-border-radius:15px;
-
-overflow-x:auto;
-
+    background:black;
+    padding:15px;
+    border-radius:15px;
+    overflow-x:auto;
 }
 
 
 code{
-
-color:#38bdf8;
-
+    color:#38bdf8;
 }
 
 
+/* =========================
+   TRICOLOR FOOTER
+========================= */
+
+.tricolor-footer{
+    width:100%;
+    margin-top:45px;
+    background:#ffffff;
+    overflow:hidden;
+    box-shadow:0 -4px 20px rgba(0,0,0,0.25);
+}
+
+
+/* Saffron Strip */
+
+.footer-saffron{
+    width:100%;
+    height:7px;
+    background:#FF9933;
+}
+
+
+/* Footer Main Area */
+
+.footer-content{
+    min-height:75px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    gap:18px;
+
+    padding:15px 25px;
+
+    background:#ffffff;
+    color:#111827;
+
+    text-align:center;
+
+    font-size:15px;
+    font-weight:600;
+}
+
+
+.footer-content p{
+    margin:0;
+}
+
+
+.developer-name{
+    color:#FF671F;
+    font-weight:800;
+    font-size:16px;
+}
+
+
+.footer-divider{
+    color:#000080;
+    font-weight:bold;
+    font-size:20px;
+}
+
+
+/* Green Strip */
+
+.footer-green{
+    width:100%;
+    height:7px;
+    background:#138808;
+}
+
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+    .chatbot-container{
+        width:95%;
+    }
+
+    #chat-box{
+        height:500px;
+    }
+
+    .footer-content{
+        flex-direction:column;
+        gap:7px;
+        padding:18px 15px;
+    }
+
+    .footer-divider{
+        display:none;
+    }
+
+}
+
 </style>
-
-
 
 
 <script>
@@ -200,13 +263,11 @@ color:#38bdf8;
 
 function formatResponse(text){
 
+    text=text.replace(/\n/g,"<br>");
 
-text=text.replace(/\n/g,"<br>");
+    text=text.replace(/•/g,"<br> • ");
 
-text=text.replace(/•/g,"<br> • ");
-
-return text;
-
+    return text;
 
 }
 
@@ -215,156 +276,126 @@ return text;
 async function sendMessage(){
 
 
-let message=
+    let message=
+    document.getElementById("message").value.trim();
 
-document.getElementById("message").value.trim();
 
+    if(!message){
+        return;
+    }
 
-if(!message){
 
-return;
+    let chatBox=
+    document.getElementById("chat-box");
 
-}
 
+    chatBox.innerHTML+=`
 
+    <div class="user-chat">
 
-let chatBox=
+        <b>You</b><br><br>
 
-document.getElementById("chat-box");
+        ${message}
 
+    </div>
 
+    `;
 
-chatBox.innerHTML+=`
 
-<div class="user-chat">
+    document.getElementById("message").value="";
 
-<b>You</b><br><br>
 
-${message}
+    chatBox.innerHTML+=`
 
-</div>
+    <div class="ai-chat loading"
+    id="loading">
 
-`;
+        AI is Thinking.....
 
+    </div>
 
-document.getElementById("message").value="";
+    `;
 
 
+    chatBox.scrollTop=
+    chatBox.scrollHeight;
 
-chatBox.innerHTML+=`
 
-<div class="ai-chat loading"
+    try{
 
-id="loading">
 
-AI is Thinking.....
+        const response=
+        await fetch(
 
-</div>
+            "/chat-api",
 
-`;
+            {
 
+                method:"POST",
 
+                headers:{
+                    "Content-Type":"application/json"
+                },
 
-chatBox.scrollTop=
+                body:JSON.stringify({
+                    message:message
+                })
 
-chatBox.scrollHeight;
+            }
 
+        );
 
 
-try{
+        const data=
+        await response.json();
 
 
-const response=
+        document.getElementById(
+            "loading"
+        ).remove();
 
-await fetch(
 
-"/chat-api",
+        chatBox.innerHTML+=`
 
-{
+        <div class="ai-chat">
 
-method:"POST",
+            <b>Educational AI Assistant</b>
 
-headers:{
+            <br><br>
 
-"Content-Type":"application/json"
+            ${formatResponse(data.response)}
 
-},
+        </div>
 
-body:JSON.stringify({
+        `;
 
-message:message
 
-})
+        chatBox.scrollTop=
+        chatBox.scrollHeight;
 
-}
 
-);
+    }
 
 
+    catch(error){
 
-const data=
 
-await response.json();
+        document.getElementById(
+            "loading"
+        ).remove();
 
 
+        chatBox.innerHTML+=`
 
-document.getElementById(
+        <div class="ai-chat">
 
-"loading"
+            Unable to connect with AI Server.
 
-).remove();
+        </div>
 
+        `;
 
-
-chatBox.innerHTML+=`
-
-<div class="ai-chat">
-
-<b>Educational AI Assistant</b>
-
-<br><br>
-
-${formatResponse(data.response)}
-
-</div>
-
-`;
-
-
-
-chatBox.scrollTop=
-
-chatBox.scrollHeight;
-
-
-
-}
-
-
-catch(error){
-
-
-document.getElementById(
-
-"loading"
-
-).remove();
-
-
-
-chatBox.innerHTML+=`
-
-<div class="ai-chat">
-
-Unable to connect with AI Server.
-
-</div>
-
-`;
-
-
-}
-
+    }
 
 
 }
@@ -372,40 +403,31 @@ Unable to connect with AI Server.
 
 
 document.getElementById(
-
-"message"
-
+    "message"
 ).addEventListener(
 
-"keydown",
+    "keydown",
 
-function(event){
-
-
-if(
-
-event.key==="Enter"
-
-&&
-
-!event.shiftKey
-
-){
-
-event.preventDefault();
-
-sendMessage();
-
-}
+    function(event){
 
 
-}
+        if(
+            event.key==="Enter"
+            &&
+            !event.shiftKey
+        ){
 
+            event.preventDefault();
+
+            sendMessage();
+
+        }
+
+    }
 
 );
 
 
 </script>
-
 
 {% endblock %}
