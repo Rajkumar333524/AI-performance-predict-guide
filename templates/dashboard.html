@@ -1,150 +1,102 @@
-{% extends 'layout.html' %}
+    <!-- ================= FOOTER ================= -->
 
-{% block content %}
+    <footer class="tricolor-footer">
 
-<div class="dashboard-container">
+        <div class="footer-saffron"></div>
 
-    <h1 class="dashboard-title">
-        Welcome, {{ current_user.username }}
-    </h1>
+        <div class="footer-white">
+            <p>
+                Design and Developed by
+                <strong>Raj Kumar Pal</strong>
+            </p>
 
-    <div class="card-grid">
+            <p class="college-name">
+                Sam Higginbottom University of Agriculture,
+                Technology and Sciences (SHUATS)
+            </p>
 
-        <div class="card stat-card">
-            <h3>Total Predictions</h3>
-            <h2>{{ total_predictions }}</h2>
+            <p class="footer-location">
+                Naini, Prayagraj
+            </p>
         </div>
 
-        <div class="card stat-card">
-            <h3>Average Score</h3>
-            <h2>{{ avg_score|round(2) }}</h2>
-        </div>
+        <div class="footer-green"></div>
 
-        <div class="card stat-card">
-            <h3>XP Points</h3>
-            <h2>{{ current_user.xp }}</h2>
-        </div>
+    </footer>
 
-        <div class="card stat-card">
-            <h3>Study Streak</h3>
-            <h2>{{ current_user.streak }}</h2>
-        </div>
 
-    </div>
+    <style>
 
-    {% if latest %}
+    /* ================= FOOTER DESIGN ================= */
 
-    <div class="glass-card latest-card">
+    .tricolor-footer {
+        width: 100%;
+        margin-top: 50px;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    }
 
-        <h2>Latest Prediction</h2>
+    .footer-saffron {
+        height: 10px;
+        background: #ff9933;
+    }
 
-        <div class="latest-grid">
+    .footer-white {
+        background: #ffffff;
+        color: #111827;
+        text-align: center;
+        padding: 18px 15px;
+    }
 
-            <div>
-                <strong>Performance Score</strong>
-                <p>{{ latest.performance_score }}</p>
-            </div>
+    .footer-white p {
+        margin: 5px 0;
+        font-size: 15px;
+    }
 
-            <div>
-                <strong>Performance Level</strong>
-                <p>{{ latest.performance_level }}</p>
-            </div>
+    .footer-white strong {
+        color: #ff6600;
+        font-size: 17px;
+    }
 
-            <div>
-                <strong>Career</strong>
-                <p>{{ latest.career }}</p>
-            </div>
+    .college-name {
+        font-weight: 600;
+        color: #1e3a8a;
+    }
 
-            <div>
-                <strong>Strong Subject</strong>
-                <p>{{ latest.strong_subject }}</p>
-            </div>
+    .footer-location {
+        font-weight: 600;
+        color: #138808;
+    }
 
-            <div>
-                <strong>Weak Subject</strong>
-                <p>{{ latest.weak_subject }}</p>
-            </div>
+    .footer-green {
+        height: 10px;
+        background: #138808;
+    }
 
-        </div>
+    @media (max-width: 600px) {
 
-    </div>
+        .tricolor-footer {
+            margin-top: 30px;
+            border-radius: 10px;
+        }
 
-    {% endif %}
+        .footer-white {
+            padding: 15px 10px;
+        }
 
-    <div class="glass-card chart-card">
+        .footer-white p {
+            font-size: 13px;
+        }
 
-        <h2>Performance Analytics</h2>
+        .footer-white strong {
+            font-size: 15px;
+        }
 
-        <div class="chart-wrapper">
-            <canvas id="performanceChart"></canvas>
-        </div>
+    }
 
-    </div>
+    </style>
 
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-    const canvas = document.getElementById("performanceChart");
-
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-
-    
-
-    const labels = [
-    "{% for p in predictions %}",
-     "Prediction {{ loop.index }}",
-    "{% endfor %}"
-     ];
-
-    const scores = [
-    "{% for p in predictions %}",
-    "{{ p.performance_score or 0 }}",
-    "{% endfor %}"
-    ];
-
-    new Chart(ctx, {
-        type: "line",
-
-        data: {
-            labels: labels,
-
-            datasets: [{
-                label: "Performance Score",
-                data: scores,
-                borderColor: "#38bdf8",
-                backgroundColor: "rgba(56,189,248,0.2)",
-                borderWidth: 3,
-                tension: 0.4,
-                fill: true
-            }]
-        },
-
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-
-            plugins: {
-                legend: {
-                    display: true
-                }
-            },
-
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 100
-                }
-            }
-        }
-    });
-
-});
-</script>
 
 {% endblock %}
